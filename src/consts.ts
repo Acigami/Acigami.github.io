@@ -6,9 +6,8 @@ export const DESCRIPCION =
 // Los enlaces del hub de la home.
 export const ENLACES = [
   { texto: 'GitHub', href: 'https://github.com/Acigami' },
+  { texto: 'LinkedIn', href: 'https://www.linkedin.com/in/rom%C3%A1n-fern%C3%A1ndez-arias-11b3b0289' },
   { texto: 'Email', href: 'mailto:ferardelsur@gmail.com' },
-  // Completar con la URL exacta del perfil y descomentar:
-  // { texto: 'LinkedIn', href: 'https://www.linkedin.com/in/...' },
   // Para publicar el CV: copiar el PDF (sin el teléfono) a public/cv.pdf y descomentar:
   // { texto: 'CV', href: '/cv.pdf' },
 ];
