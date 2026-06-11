@@ -1,10 +1,14 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import { NOMBRE } from '../consts';
+import retrato from '../assets/roman.jpg';
 ---
 
 <Base titulo={`Sobre mí · ${NOMBRE}`} descripcion="Quién soy, qué hago y qué me interesa.">
   <h1>Sobre mí</h1>
+
+  <Image src={retrato} alt="Retrato de Román Fernández Arias" width={360} height={360} class="retrato" />
 
   <p>
     Soy Román. Estudio Antropología Social y Cultural en la UNSAM, con orientación en métodos
@@ -27,9 +31,27 @@ import { NOMBRE } from '../consts';
     procesamiento de lenguaje natural y mapas.
   </p>
 
-  <h2>Contacto</h2>
+  <h2 class="titulo-seccion">Contacto</h2>
   <p>
     Podés escribirme a <a href="mailto:ferardelsur@gmail.com">ferardelsur@gmail.com</a> o
     encontrarme en <a href="https://github.com/Acigami">GitHub</a>.
   </p>
 </Base>
+
+<style>
+  .retrato {
+    float: right;
+    width: 180px;
+    height: 180px;
+    border-radius: 10px;
+    border: 1px solid var(--borde);
+    margin: 0 0 1rem 1.5rem;
+  }
+
+  @media (max-width: 640px) {
+    .retrato {
+      width: 140px;
+      height: 140px;
+    }
+  }
+</style>

@@ -1,8 +1,10 @@
 ---
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import TarjetaProyecto from '../components/TarjetaProyecto.astro';
 import { ENLACES, NOMBRE } from '../consts';
+import retrato from '../assets/roman.jpg';
 
 const destacados = (await getCollection('proyectos', ({ data }) => data.destacado)).sort(
   (a, b) => b.data.fecha.valueOf() - a.data.fecha.valueOf()
@@ -11,22 +13,25 @@ const destacados = (await getCollection('proyectos', ({ data }) => data.destacad
 
 <Base titulo={NOMBRE}>
   <section class="hero">
-    <h1>{NOMBRE}</h1>
-    <p class="bajada">
-      Vengo de la antropología y me dedico a los datos: doy clases de aprendizaje automático en
-      la UNSAM y en GeoDojo, y estoy terminando la tesina de la licenciatura. Acá junto mis
-      proyectos y un sandbox de experimentos que corren en el navegador.
-    </p>
-    <p><a href="/sobre-mi/">Más sobre mí</a></p>
-    <ul class="hub">
-      {
-        ENLACES.map((enlace) => (
-          <li>
-            <a href={enlace.href}>{enlace.texto}</a>
-          </li>
-        ))
-      }
-    </ul>
+    <div class="hero-texto">
+      <h1>{NOMBRE}</h1>
+      <p class="bajada">
+        Vengo de la antropología y me dedico a los datos: doy clases de aprendizaje automático en
+        la UNSAM y en GeoDojo, y estoy terminando la tesina de la licenciatura. Acá junto mis
+        proyectos y un sandbox de experimentos que corren en el navegador.
+      </p>
+      <p><a href="/sobre-mi/">Más sobre mí</a></p>
+      <ul class="hub">
+        {
+          ENLACES.map((enlace) => (
+            <li>
+              <a href={enlace.href}>{enlace.texto}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <Image src={retrato} alt="Retrato de Román Fernández Arias" width={280} height={280} class="retrato" />
   </section>
 
   <section>
@@ -50,7 +55,32 @@ const destacados = (await getCollection('proyectos', ({ data }) => data.destacad
 
 <style>
   .hero {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
     margin-bottom: 2.5rem;
+  }
+
+  .hero-texto {
+    flex: 1;
+  }
+
+  .retrato {
+    width: 140px;
+    height: 140px;
+    border-radius: 10px;
+    border: 1px solid var(--borde);
+  }
+
+  @media (max-width: 640px) {
+    .hero {
+      flex-direction: column;
+    }
+
+    .retrato {
+      width: 120px;
+      height: 120px;
+    }
   }
 
   .hero h1 {
