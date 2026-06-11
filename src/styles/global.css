@@ -119,11 +119,15 @@ blockquote {
 
 .fila h3 a {
   color: var(--texto);
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--texto-suave);
+  text-underline-offset: 3px;
 }
 
 .fila h3 a:hover {
   color: var(--acento);
+  text-decoration-color: var(--acento);
 }
 
 .fila p {
