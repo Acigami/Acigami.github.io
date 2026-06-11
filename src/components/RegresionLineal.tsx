@@ -31,7 +31,24 @@ function ajustar(puntos: Punto[]) {
 export default function RegresionLineal() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [puntos, setPuntos] = useState<Punto[]>([]);
+  const [versionTema, setVersionTema] = useState(0);
   const ajuste = ajustar(puntos);
+
+  // Repinta cuando cambia el tema: los colores del canvas se leen al dibujar.
+  useEffect(() => {
+    const alCambiar = () => setVersionTema((n) => n + 1);
+    const observador = new MutationObserver(alCambiar);
+    observador.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-tema'],
+    });
+    const consulta = window.matchMedia('(prefers-color-scheme: dark)');
+    consulta.addEventListener('change', alCambiar);
+    return () => {
+      observador.disconnect();
+      consulta.removeEventListener('change', alCambiar);
+    };
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -97,7 +114,7 @@ export default function RegresionLineal() {
       ctx.arc(aPixelX(p.x), aPixelY(p.y), 4, 0, Math.PI * 2);
       ctx.fill();
     }
-  }, [puntos]);
+  }, [puntos, versionTema]);
 
   const manejarClick = (evento: MouseEvent) => {
     const canvas = canvasRef.current;

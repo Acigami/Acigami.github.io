@@ -16,19 +16,66 @@ const esActivo = (href: string) =>
 <header>
   <nav>
     <a class="marca" href="/">{NOMBRE}</a>
-    <ul>
-      {
-        enlaces.map((enlace) => (
-          <li>
-            <a href={enlace.href} aria-current={esActivo(enlace.href) ? 'page' : undefined}>
-              {enlace.texto}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
+    <div class="derecha">
+      <ul>
+        {
+          enlaces.map((enlace) => (
+            <li>
+              <a href={enlace.href} aria-current={esActivo(enlace.href) ? 'page' : undefined}>
+                {enlace.texto}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <button id="boton-tema" type="button" aria-label="Cambiar entre tema claro y oscuro">
+        <svg
+          class="icono-luna"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path>
+        </svg>
+        <svg
+          class="icono-sol"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <circle cx="12" cy="12" r="4"></circle>
+          <path
+            d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"
+          ></path>
+        </svg>
+      </button>
+    </div>
   </nav>
 </header>
+
+<script>
+  const boton = document.getElementById('boton-tema');
+  boton?.addEventListener('click', () => {
+    const raiz = document.documentElement;
+    const sistemaOscuro = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const estaOscuro = raiz.dataset.tema ? raiz.dataset.tema === 'oscuro' : sistemaOscuro;
+    const nuevo = estaOscuro ? 'claro' : 'oscuro';
+    raiz.dataset.tema = nuevo;
+    localStorage.setItem('tema', nuevo);
+  });
+</script>
 
 <style>
   header {
@@ -52,12 +99,31 @@ const esActivo = (href: string) =>
     text-decoration: none;
   }
 
+  .derecha {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
   ul {
     display: flex;
     gap: 1.25rem;
     list-style: none;
     margin: 0;
     padding: 0;
+  }
+
+  #boton-tema {
+    display: flex;
+    border: none;
+    background: none;
+    padding: 0.25rem;
+    color: var(--texto-suave);
+    cursor: pointer;
+  }
+
+  #boton-tema:hover {
+    color: var(--acento);
   }
 
   ul a {

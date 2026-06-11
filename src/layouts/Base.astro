@@ -22,6 +22,11 @@ const { titulo, descripcion = DESCRIPCION } = Astro.props;
     <meta name="description" content={descripcion} />
     <meta name="generator" content={Astro.generator} />
     <title>{titulo}</title>
+    <script is:inline>
+      // Aplica el tema guardado antes del primer pintado para evitar el flash.
+      const tema = localStorage.getItem('tema');
+      if (tema === 'claro' || tema === 'oscuro') document.documentElement.dataset.tema = tema;
+    </script>
   </head>
   <body>
     <Header />

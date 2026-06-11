@@ -12,8 +12,10 @@
   --serif: 'Source Serif 4 Variable', Georgia, serif;
 }
 
+/* Modo oscuro automático (si no hay tema elegido a mano). El bloque se
+   repite abajo para el tema explícito: si cambiás un valor, cambialo en ambos. */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-tema='claro']) {
     --fondo: #191512;
     --fondo-suave: #221d18;
     --fondo-chip: #221d18;
@@ -22,6 +24,22 @@
     --acento: #f47b50;
     --borde: #3a332a;
   }
+}
+
+/* Modo oscuro elegido con el botón del header. */
+:root[data-tema='oscuro'] {
+  --fondo: #191512;
+  --fondo-suave: #221d18;
+  --fondo-chip: #221d18;
+  --texto: #e9e2d5;
+  --texto-suave: #9a9183;
+  --acento: #f47b50;
+  --borde: #3a332a;
+  color-scheme: dark;
+}
+
+:root[data-tema='claro'] {
+  color-scheme: light;
 }
 
 * {
@@ -174,4 +192,28 @@ blockquote {
   border-top: 1px solid var(--borde);
   padding-top: 1rem;
   margin: 2.5rem 0 0.9rem;
+}
+
+/* Íconos del botón de tema: se muestra el del modo al que se va a cambiar.
+   Van acá y no en el Header porque dependen de atributos de <html>. */
+.icono-sol {
+  display: none;
+}
+
+:root[data-tema='oscuro'] .icono-sol {
+  display: block;
+}
+
+:root[data-tema='oscuro'] .icono-luna {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-tema='claro']) .icono-sol {
+    display: block;
+  }
+
+  :root:not([data-tema='claro']) .icono-luna {
+    display: none;
+  }
 }
