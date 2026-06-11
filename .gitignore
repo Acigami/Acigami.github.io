@@ -1,0 +1,21 @@
+# dependencias y artefactos de build
+node_modules/
+dist/
+.astro/
+
+# variables de entorno
+.env
+.env.*
+
+# herramientas locales (no son parte del sitio)
+.claude/
+karpathy-guidelines/
+
+# guías locales para trabajar con Claude: viven en el disco, no se publican
+CLAUDE.md
+PLAN.md
+
+# logs y archivos de sistema
+npm-debug.log*
+.DS_Store
+Thumbs.db

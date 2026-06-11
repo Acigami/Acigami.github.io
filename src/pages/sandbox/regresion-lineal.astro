@@ -1,0 +1,68 @@
+---
+import Base from '../../layouts/Base.astro';
+import RegresionLineal from '../../components/RegresionLineal';
+import { NOMBRE } from '../../consts';
+---
+
+<Base
+  titulo={`Regresión lineal a mano · ${NOMBRE}`}
+  descripcion="Un juguete interactivo: agregá puntos y mirá cómo se ajusta la recta de cuadrados mínimos."
+>
+  <h1>Regresión lineal a mano</h1>
+  <p>
+    Hacé click en el gráfico para agregar puntos. Con cada punto nuevo se reajusta la recta de
+    cuadrados mínimos y cambia el R². Probá qué le hace a la recta un punto bien lejos del resto.
+  </p>
+
+  <RegresionLineal client:load />
+
+  <h2>Cómo está hecho</h2>
+  <p>
+    Esta página es estática salvo el gráfico, que es una
+    <a href="https://docs.astro.build/es/concepts/islands/">isla</a> de Preact: un componente que
+    se hidrata en el navegador mientras el resto del HTML llega ya renderizado. El ajuste es la
+    fórmula clásica de cuadrados mínimos, recalculada con cada click. El código está en
+    <code>src/components/RegresionLineal.tsx</code>.
+  </p>
+</Base>
+
+<style is:global>
+  .juguete canvas {
+    display: block;
+    cursor: crosshair;
+    border: 1px solid var(--borde);
+    border-radius: 0.5rem;
+  }
+
+  .juguete .lectura {
+    font-variant-numeric: tabular-nums;
+    color: var(--texto-suave);
+    min-height: 1.6em;
+  }
+
+  .juguete .botones {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .juguete button {
+    font: inherit;
+    font-size: 0.9rem;
+    color: var(--texto);
+    background: var(--fondo-suave);
+    border: 1px solid var(--borde);
+    border-radius: 0.4rem;
+    padding: 0.35rem 0.9rem;
+    cursor: pointer;
+  }
+
+  .juguete button:hover:not(:disabled) {
+    border-color: var(--acento);
+    color: var(--acento);
+  }
+
+  .juguete button:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+</style>

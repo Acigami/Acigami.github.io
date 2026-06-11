@@ -1,0 +1,38 @@
+---
+import Base from '../../layouts/Base.astro';
+import { NOMBRE } from '../../consts';
+
+// Lista curada de experimentos: al crear uno nuevo, sumá su entrada acá.
+const experimentos = [
+  {
+    titulo: 'Regresión lineal a mano',
+    descripcion:
+      'Agregá puntos con el mouse y mirá cómo se reajusta la recta de cuadrados mínimos.',
+    href: '/sandbox/regresion-lineal/',
+    fecha: 'junio 2026',
+  },
+];
+---
+
+<Base titulo={`Sandbox · ${NOMBRE}`} descripcion="Experimentos que corren en el navegador.">
+  <h1>Sandbox</h1>
+  <p>
+    Acá pruebo ideas sueltas sin miedo a romper el resto del sitio: visualizaciones, juguetes
+    interactivos, lo que aparezca. Cada experimento es una página propia, con su isla de
+    JavaScript si la necesita.
+  </p>
+
+  <div class="lista-tarjetas">
+    {
+      experimentos.map((experimento) => (
+        <article class="tarjeta">
+          <h3>
+            <a href={experimento.href}>{experimento.titulo}</a>
+          </h3>
+          <p class="meta">{experimento.fecha}</p>
+          <p>{experimento.descripcion}</p>
+        </article>
+      ))
+    }
+  </div>
+</Base>

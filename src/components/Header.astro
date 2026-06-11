@@ -1,0 +1,75 @@
+---
+import { NOMBRE } from '../consts';
+
+const enlaces = [
+  { href: '/', texto: 'Inicio' },
+  { href: '/proyectos/', texto: 'Proyectos' },
+  { href: '/sandbox/', texto: 'Sandbox' },
+  { href: '/sobre-mi/', texto: 'Sobre mí' },
+];
+
+const ruta = Astro.url.pathname;
+const esActivo = (href: string) =>
+  href === '/' ? ruta === '/' : ruta.startsWith(href.replace(/\/$/, ''));
+---
+
+<header>
+  <nav>
+    <a class="marca" href="/">{NOMBRE}</a>
+    <ul>
+      {
+        enlaces.map((enlace) => (
+          <li>
+            <a href={enlace.href} aria-current={esActivo(enlace.href) ? 'page' : undefined}>
+              {enlace.texto}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>
+
+<style>
+  header {
+    border-bottom: 1px solid var(--borde);
+  }
+
+  nav {
+    max-width: var(--ancho-contenido);
+    margin: 0 auto;
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .marca {
+    font-weight: 700;
+    color: var(--texto);
+    text-decoration: none;
+  }
+
+  ul {
+    display: flex;
+    gap: 1.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  ul a {
+    color: var(--texto-suave);
+    text-decoration: none;
+  }
+
+  ul a:hover {
+    color: var(--acento);
+  }
+
+  ul a[aria-current='page'] {
+    color: var(--acento);
+  }
+</style>

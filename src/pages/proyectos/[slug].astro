@@ -1,0 +1,51 @@
+---
+import type { InferGetStaticPropsType } from 'astro';
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { NOMBRE } from '../../consts';
+
+export async function getStaticPaths() {
+  const proyectos = await getCollection('proyectos');
+  return proyectos.map((proyecto) => ({
+    params: { slug: proyecto.id },
+    props: { proyecto },
+  }));
+}
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { proyecto } = Astro.props;
+const { titulo, descripcion, fecha, etiquetas, borrador, repo, demo } = proyecto.data;
+const { Content } = await render(proyecto);
+const fechaLegible = fecha.toLocaleDateString('es-AR', { month: 'long', year: 'numeric' });
+---
+
+<Base titulo={`${titulo} · ${NOMBRE}`} descripcion={descripcion}>
+  <article>
+    <h1>
+      {titulo}
+      {borrador && <span class="insignia-borrador">borrador</span>}
+    </h1>
+    <p class="meta">
+      {fechaLegible}{etiquetas.length > 0 && ` · ${etiquetas.join(', ')}`}
+    </p>
+    {
+      (repo || demo) && (
+        <p>
+          {repo && <a href={repo}>Código</a>}
+          {repo && demo && ' · '}
+          {demo && <a href={demo}>Demo</a>}
+        </p>
+      )
+    }
+    <Content />
+  </article>
+
+  <p class="volver"><a href="/proyectos/">Todos los proyectos</a></p>
+</Base>
+
+<style>
+  .volver {
+    margin-top: 2.5rem;
+  }
+</style>

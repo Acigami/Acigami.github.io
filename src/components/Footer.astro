@@ -1,0 +1,30 @@
+---
+import { NOMBRE } from '../consts';
+
+const anio = new Date().getFullYear();
+---
+
+<footer>
+  <div class="contenido">
+    <p>© {anio} {NOMBRE} · Hecho con <a href="https://astro.build">Astro</a></p>
+  </div>
+</footer>
+
+<style>
+  footer {
+    border-top: 1px solid var(--borde);
+    margin-top: 2rem;
+  }
+
+  .contenido {
+    max-width: var(--ancho-contenido);
+    margin: 0 auto;
+    padding: 1.5rem 1.25rem;
+    color: var(--texto-suave);
+    font-size: 0.9rem;
+  }
+
+  .contenido p {
+    margin: 0;
+  }
+</style>

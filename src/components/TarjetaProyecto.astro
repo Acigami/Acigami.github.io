@@ -1,0 +1,22 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  proyecto: CollectionEntry<'proyectos'>;
+}
+
+const { proyecto } = Astro.props;
+const { titulo, descripcion, fecha, etiquetas, borrador } = proyecto.data;
+const fechaLegible = fecha.toLocaleDateString('es-AR', { month: 'long', year: 'numeric' });
+---
+
+<article class="tarjeta">
+  <h3>
+    <a href={`/proyectos/${proyecto.id}/`}>{titulo}</a>
+    {borrador && <span class="insignia-borrador">borrador</span>}
+  </h3>
+  <p class="meta">
+    {fechaLegible}{etiquetas.length > 0 && ` · ${etiquetas.join(', ')}`}
+  </p>
+  <p>{descripcion}</p>
+</article>

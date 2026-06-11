@@ -1,0 +1,124 @@
+/* Tokens de diseño: una sola fuente de verdad para colores y medidas. */
+:root {
+  --fondo: #ffffff;
+  --fondo-suave: #f8fafc;
+  --texto: #1e293b;
+  --texto-suave: #64748b;
+  --acento: #2563eb;
+  --borde: #e2e8f0;
+  --ancho-contenido: 44rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fondo: #0f172a;
+    --fondo-suave: #1e293b;
+    --texto: #e2e8f0;
+    --texto-suave: #94a3b8;
+    --acento: #60a5fa;
+    --borde: #334155;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light dark;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  background: var(--fondo);
+  color: var(--texto);
+}
+
+main {
+  max-width: var(--ancho-contenido);
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 4rem;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.25;
+}
+
+a {
+  color: var(--acento);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+code {
+  background: var(--fondo-suave);
+  border: 1px solid var(--borde);
+  border-radius: 0.25rem;
+  padding: 0.1rem 0.3rem;
+  font-size: 0.9em;
+}
+
+blockquote {
+  margin: 1rem 0;
+  padding: 0.25rem 1rem;
+  border-left: 3px solid var(--borde);
+  color: var(--texto-suave);
+}
+
+/* Piezas compartidas entre páginas */
+
+.meta {
+  color: var(--texto-suave);
+  font-size: 0.9rem;
+  margin: 0.25rem 0 0.5rem;
+}
+
+.lista-tarjetas {
+  display: grid;
+  gap: 1rem;
+}
+
+.tarjeta {
+  border: 1px solid var(--borde);
+  border-radius: 0.5rem;
+  background: var(--fondo-suave);
+  padding: 1rem 1.25rem;
+}
+
+.tarjeta h3 {
+  margin: 0;
+}
+
+.tarjeta p {
+  margin: 0.4rem 0 0;
+}
+
+.insignia-borrador {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 0.5rem;
+  border: 1px solid var(--borde);
+  border-radius: 999px;
+  padding: 0 0.6rem;
+  font-size: 0.7rem;
+  font-weight: normal;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--texto-suave);
+}
+
+.nota-borrador {
+  border: 1px dashed var(--borde);
+  border-left: 3px solid var(--acento);
+  border-radius: 0.25rem;
+  background: var(--fondo-suave);
+  color: var(--texto-suave);
+  padding: 0.75rem 1rem;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+}

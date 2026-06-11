@@ -1,0 +1,23 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import TarjetaProyecto from '../../components/TarjetaProyecto.astro';
+import { NOMBRE } from '../../consts';
+
+const proyectos = (await getCollection('proyectos')).sort(
+  (a, b) => b.data.fecha.valueOf() - a.data.fecha.valueOf()
+);
+---
+
+<Base titulo={`Proyectos · ${NOMBRE}`} descripcion="Portfolio de proyectos de datos, mapas y código.">
+  <h1>Proyectos</h1>
+  <p>
+    Lo que vengo haciendo con datos, mapas y código. Las entradas con la insignia
+    <span class="insignia-borrador">borrador</span> son ejemplos para reemplazar por proyectos
+    reales: cada una es un archivo Markdown en <code>src/content/proyectos/</code>.
+  </p>
+
+  <div class="lista-tarjetas">
+    {proyectos.map((proyecto) => <TarjetaProyecto proyecto={proyecto} />)}
+  </div>
+</Base>
