@@ -21,6 +21,9 @@ jobs:
         uses: actions/checkout@v4
       - name: Build con Astro
         uses: withastro/action@v3
+        with:
+          # Astro 6 requiere Node >= 22.12; la action usa 20 por defecto
+          node-version: 24
 
   deploy:
     needs: build
