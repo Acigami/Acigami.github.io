@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@astrojs/preact": "^5.1.5",
+    "@fontsource-variable/source-serif-4": "^5.2.9",
     "astro": "^6.4.6",
     "preact": "^10.29.2"
   }

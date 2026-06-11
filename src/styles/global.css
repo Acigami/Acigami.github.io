@@ -8,6 +8,8 @@
   --acento: #c2410c;
   --borde: #ddd5c7;
   --ancho-contenido: 44rem;
+  --sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --serif: 'Source Serif 4 Variable', Georgia, serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -32,7 +34,7 @@ html {
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-family: var(--sans);
   font-size: 1.0625rem;
   line-height: 1.65;
   background: var(--fondo);
@@ -48,7 +50,17 @@ main {
 h1,
 h2,
 h3 {
+  font-family: var(--serif);
   line-height: 1.25;
+}
+
+h1 {
+  font-weight: 400;
+}
+
+h2,
+h3 {
+  font-weight: 600;
 }
 
 a {
@@ -123,4 +135,16 @@ blockquote {
   padding: 0.75rem 1rem;
   margin: 1.5rem 0;
   font-size: 0.95rem;
+}
+
+.titulo-seccion {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--texto-suave);
+  border-top: 1px solid var(--borde);
+  padding-top: 1rem;
+  margin: 2.5rem 0 0.9rem;
 }
