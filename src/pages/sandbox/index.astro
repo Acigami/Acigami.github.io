@@ -26,12 +26,10 @@ const experimentos = [
     {
       experimentos.map((experimento) => (
         <article class="fila">
-          <div class="fila-encabezado">
-            <h3>
-              <a href={experimento.href}>{experimento.titulo}</a>
-            </h3>
-            <p class="meta">{experimento.fecha}</p>
-          </div>
+          <h3>
+            <a href={experimento.href}>{experimento.titulo}</a>
+          </h3>
+          <p class="meta">{experimento.fecha}</p>
           <p>{experimento.descripcion}</p>
         </article>
       ))

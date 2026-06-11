@@ -122,14 +122,6 @@ blockquote {
   border-top: 1px solid var(--borde);
 }
 
-.fila-encabezado {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 0.25rem 1rem;
-  flex-wrap: wrap;
-}
-
 .fila h3 {
   margin: 0;
   font-size: 1.05rem;
@@ -153,7 +145,7 @@ blockquote {
 }
 
 .fila .meta {
-  margin: 0;
+  margin: 0.15rem 0 0;
   font-size: 0.85rem;
 }
 
