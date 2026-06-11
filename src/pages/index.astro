@@ -31,7 +31,15 @@ const destacados = (await getCollection('proyectos', ({ data }) => data.destacad
         }
       </ul>
     </div>
-    <Image src={retrato} alt="Retrato de Román Fernández Arias" width={280} height={280} class="retrato" />
+    <Image
+      src={retrato}
+      alt="Retrato de Román Fernández Arias"
+      width={280}
+      height={280}
+      class="retrato"
+      loading="eager"
+      fetchpriority="high"
+    />
   </section>
 
   <section>
