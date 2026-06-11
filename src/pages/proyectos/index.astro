@@ -11,11 +11,7 @@ const proyectos = (await getCollection('proyectos')).sort(
 
 <Base titulo={`Proyectos · ${NOMBRE}`} descripcion="Portfolio de proyectos de datos, mapas y código.">
   <h1>Proyectos</h1>
-  <p>
-    Lo que vengo haciendo con datos, mapas y código. Las entradas con la insignia
-    <span class="insignia-borrador">borrador</span> son ejemplos para reemplazar por proyectos
-    reales: cada una es un archivo Markdown en <code>src/content/proyectos/</code>.
-  </p>
+  <p>Lo que vengo haciendo con datos, entre la investigación, la docencia y el código.</p>
 
   <div class="lista-tarjetas">
     {proyectos.map((proyecto) => <TarjetaProyecto proyecto={proyecto} />)}
