@@ -3,6 +3,7 @@ import type { InferGetStaticPropsType } from 'astro';
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { NOMBRE } from '../../consts';
+import { formatearFecha } from '../../fechas';
 
 export async function getStaticPaths() {
   const proyectos = await getCollection('proyectos');
@@ -17,7 +18,7 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 const { proyecto } = Astro.props;
 const { titulo, descripcion, fecha, etiquetas, borrador, repo, demo } = proyecto.data;
 const { Content } = await render(proyecto);
-const fechaLegible = fecha.toLocaleDateString('es-AR', { month: 'long', year: 'numeric' });
+const fechaLegible = formatearFecha(fecha);
 ---
 
 <Base titulo={`${titulo} · ${NOMBRE}`} descripcion={descripcion}>
