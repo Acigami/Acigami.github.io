@@ -10,10 +10,12 @@ dist/
 # herramientas locales (no son parte del sitio)
 .claude/
 karpathy-guidelines/
+.superpowers/
 
 # guías locales para trabajar con Claude: viven en el disco, no se publican
 CLAUDE.md
 PLAN.md
+docs/superpowers/
 
 # material de referencia local (CV, etc.), no se publica
 Cosas extra para usar de referencia/
