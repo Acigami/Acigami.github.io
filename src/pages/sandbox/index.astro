@@ -22,14 +22,16 @@ const experimentos = [
     JavaScript si la necesita.
   </p>
 
-  <div class="lista-tarjetas">
+  <div class="lista-filas">
     {
       experimentos.map((experimento) => (
-        <article class="tarjeta">
-          <h3>
-            <a href={experimento.href}>{experimento.titulo}</a>
-          </h3>
-          <p class="meta">{experimento.fecha}</p>
+        <article class="fila">
+          <div class="fila-encabezado">
+            <h3>
+              <a href={experimento.href}>{experimento.titulo}</a>
+            </h3>
+            <p class="meta">{experimento.fecha}</p>
+          </div>
           <p>{experimento.descripcion}</p>
         </article>
       ))

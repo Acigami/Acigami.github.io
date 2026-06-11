@@ -10,13 +10,15 @@ const { titulo, descripcion, fecha, etiquetas, borrador } = proyecto.data;
 const fechaLegible = fecha.toLocaleDateString('es-AR', { month: 'long', year: 'numeric' });
 ---
 
-<article class="tarjeta">
-  <h3>
-    <a href={`/proyectos/${proyecto.id}/`}>{titulo}</a>
-    {borrador && <span class="insignia-borrador">borrador</span>}
-  </h3>
-  <p class="meta">
-    {fechaLegible}{etiquetas.length > 0 && ` · ${etiquetas.join(', ')}`}
-  </p>
+<article class="fila">
+  <div class="fila-encabezado">
+    <h3>
+      <a href={`/proyectos/${proyecto.id}/`}>{titulo}</a>
+      {borrador && <span class="insignia-borrador">borrador</span>}
+    </h3>
+    <p class="meta">
+      {fechaLegible}{etiquetas.length > 0 && ` · ${etiquetas.join(', ')}`}
+    </p>
+  </div>
   <p>{descripcion}</p>
 </article>

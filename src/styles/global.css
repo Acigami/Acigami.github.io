@@ -92,24 +92,47 @@ blockquote {
   margin: 0.25rem 0 0.5rem;
 }
 
-.lista-tarjetas {
-  display: grid;
-  gap: 1rem;
+.lista-filas {
+  margin: 1rem 0;
 }
 
-.tarjeta {
-  border: 1px solid var(--borde);
-  border-radius: 0.5rem;
-  background: var(--fondo-suave);
-  padding: 1rem 1.25rem;
+.fila {
+  padding: 0.9rem 0;
 }
 
-.tarjeta h3 {
+.fila + .fila {
+  border-top: 1px solid var(--borde);
+}
+
+.fila-encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.25rem 1rem;
+  flex-wrap: wrap;
+}
+
+.fila h3 {
   margin: 0;
+  font-size: 1.05rem;
 }
 
-.tarjeta p {
-  margin: 0.4rem 0 0;
+.fila h3 a {
+  color: var(--texto);
+  text-decoration: none;
+}
+
+.fila h3 a:hover {
+  color: var(--acento);
+}
+
+.fila p {
+  margin: 0.35rem 0 0;
+}
+
+.fila .meta {
+  margin: 0;
+  font-size: 0.85rem;
 }
 
 .insignia-borrador {

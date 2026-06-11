@@ -30,15 +30,15 @@ const destacados = (await getCollection('proyectos', ({ data }) => data.destacad
   </section>
 
   <section>
-    <h2>Proyectos destacados</h2>
-    <div class="lista-tarjetas">
+    <h2 class="titulo-seccion">Proyectos destacados</h2>
+    <div class="lista-filas">
       {destacados.map((proyecto) => <TarjetaProyecto proyecto={proyecto} />)}
     </div>
     <p><a href="/proyectos/">Todos los proyectos</a></p>
   </section>
 
   <section>
-    <h2>Sandbox</h2>
+    <h2 class="titulo-seccion">Sandbox</h2>
     <p>
       Experimentos que corren en el navegador. El primero:
       <a href="/sandbox/regresion-lineal/">un juguete de regresión lineal</a> para agregar puntos

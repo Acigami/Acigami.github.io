@@ -13,7 +13,7 @@ const proyectos = (await getCollection('proyectos')).sort(
   <h1>Proyectos</h1>
   <p>Lo que vengo haciendo con datos, entre la investigación, la docencia y el código.</p>
 
-  <div class="lista-tarjetas">
+  <div class="lista-filas">
     {proyectos.map((proyecto) => <TarjetaProyecto proyecto={proyecto} />)}
   </div>
 </Base>
