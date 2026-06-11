@@ -1,22 +1,24 @@
 /* Tokens de diseño: una sola fuente de verdad para colores y medidas. */
 :root {
-  --fondo: #ffffff;
-  --fondo-suave: #f8fafc;
-  --texto: #1e293b;
-  --texto-suave: #64748b;
-  --acento: #2563eb;
-  --borde: #e2e8f0;
+  --fondo: #faf6ef;
+  --fondo-suave: #f1eadd;
+  --fondo-chip: #fffdf9;
+  --texto: #1c1916;
+  --texto-suave: #6f675c;
+  --acento: #c2410c;
+  --borde: #ddd5c7;
   --ancho-contenido: 44rem;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --fondo: #0f172a;
-    --fondo-suave: #1e293b;
-    --texto: #e2e8f0;
-    --texto-suave: #94a3b8;
-    --acento: #60a5fa;
-    --borde: #334155;
+    --fondo: #191512;
+    --fondo-suave: #221d18;
+    --fondo-chip: #221d18;
+    --texto: #e9e2d5;
+    --texto-suave: #9a9183;
+    --acento: #f47b50;
+    --borde: #3a332a;
   }
 }
 

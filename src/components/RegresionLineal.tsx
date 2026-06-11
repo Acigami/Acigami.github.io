@@ -48,11 +48,11 @@ export default function RegresionLineal() {
     const color = (variable: string, porDefecto: string) =>
       estilos.getPropertyValue(variable).trim() || porDefecto;
 
-    ctx.fillStyle = color('--fondo-suave', '#f8fafc');
+    ctx.fillStyle = color('--fondo-suave', '#f1eadd');
     ctx.fillRect(0, 0, ANCHO, ALTO);
 
     // Grilla y etiquetas de los ejes
-    ctx.strokeStyle = color('--borde', '#e2e8f0');
+    ctx.strokeStyle = color('--borde', '#ddd5c7');
     ctx.lineWidth = 1;
     for (let v = 0; v <= ESCALA_MAX; v += 2) {
       ctx.beginPath();
@@ -64,7 +64,7 @@ export default function RegresionLineal() {
       ctx.lineTo(aPixelX(ESCALA_MAX), aPixelY(v));
       ctx.stroke();
     }
-    ctx.fillStyle = color('--texto-suave', '#64748b');
+    ctx.fillStyle = color('--texto-suave', '#6f675c');
     ctx.font = '12px system-ui, sans-serif';
     ctx.textAlign = 'center';
     for (let v = 0; v <= ESCALA_MAX; v += 2) {
@@ -81,7 +81,7 @@ export default function RegresionLineal() {
       ctx.beginPath();
       ctx.rect(MARGEN, MARGEN, ANCHO - 2 * MARGEN, ALTO - 2 * MARGEN);
       ctx.clip();
-      ctx.strokeStyle = color('--acento', '#2563eb');
+      ctx.strokeStyle = color('--acento', '#c2410c');
       ctx.lineWidth = 2;
       ctx.beginPath();
       ctx.moveTo(aPixelX(0), aPixelY(ajuste.ordenada));
@@ -91,7 +91,7 @@ export default function RegresionLineal() {
     }
 
     // Puntos
-    ctx.fillStyle = color('--texto', '#1e293b');
+    ctx.fillStyle = color('--texto', '#1c1916');
     for (const p of puntos) {
       ctx.beginPath();
       ctx.arc(aPixelX(p.x), aPixelY(p.y), 4, 0, Math.PI * 2);
