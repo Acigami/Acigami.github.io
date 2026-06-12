@@ -1,57 +1,37 @@
 ---
-import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import { NOMBRE } from '../consts';
-import retrato from '../assets/roman.jpg';
 ---
 
 <Base titulo={`Sobre mí · ${NOMBRE}`} descripcion="Quién soy, qué hago y qué me interesa.">
-  <h1>Sobre mí</h1>
+  <div class="prosa">
+    <h1>Sobre mí</h1>
 
-  <Image src={retrato} alt="Retrato de Román Fernández Arias" width={360} height={360} class="retrato" />
+    <p>
+      Soy Román. Estudio Antropología Social y Cultural en la UNSAM, con orientación en métodos
+      cuantitativos y ciencias sociales computacionales, y estoy en la última etapa: la tesina.
+      Ese cruce entre ciencias sociales y datos es mi terreno.
+    </p>
 
-  <p>
-    Soy Román. Estudio Antropología Social y Cultural en la UNSAM, con orientación en métodos
-    cuantitativos y ciencias sociales computacionales, y estoy en la última etapa: la tesina.
-    Ese cruce entre ciencias sociales y datos es mi terreno.
-  </p>
+    <p>
+      Hoy lo que más hago es enseñar. Soy docente ayudante de Introducción al Aprendizaje
+      Automático en la Licenciatura en Ciencia de Datos de la UNSAM, y en GeoDojo doy los módulos
+      de machine learning y deep learning aplicados a datos geoespaciales, con estudiantes
+      profesionales de toda Latinoamérica. Antes fui ayudante de Big Data y Machine Learning en la
+      UBA.
+    </p>
 
-  <p>
-    Hoy lo que más hago es enseñar. Soy docente ayudante de Introducción al Aprendizaje
-    Automático en la Licenciatura en Ciencia de Datos de la UNSAM, y en GeoDojo doy los módulos
-    de machine learning y deep learning aplicados a datos geoespaciales, con estudiantes
-    profesionales de toda Latinoamérica. Antes fui ayudante de Big Data y Machine Learning en la
-    UBA.
-  </p>
+    <p>
+      También investigué: finanzas de los hogares e influencers financieros en el Núcleo de
+      Estudios de la Economía de la UNSAM, y encuestas y demografía para la Municipalidad de San
+      Martín. Las herramientas de todos los días son Python y R: aprendizaje automático,
+      procesamiento de lenguaje natural y mapas.
+    </p>
 
-  <p>
-    También investigué: finanzas de los hogares e influencers financieros en el Núcleo de
-    Estudios de la Economía de la UNSAM, y encuestas y demografía para la Municipalidad de San
-    Martín. Las herramientas de todos los días son Python y R: aprendizaje automático,
-    procesamiento de lenguaje natural y mapas.
-  </p>
-
-  <h2 class="titulo-seccion">Contacto</h2>
-  <p>
-    Podés escribirme a <a href="mailto:ferardelsur@gmail.com">ferardelsur@gmail.com</a> o
-    encontrarme en <a href="https://github.com/Acigami">GitHub</a>.
-  </p>
+    <h2 class="titulo-seccion">Contacto</h2>
+    <p>
+      Podés escribirme a <a href="mailto:ferardelsur@gmail.com">ferardelsur@gmail.com</a> o
+      encontrarme en <a href="https://github.com/Acigami">GitHub</a>.
+    </p>
+  </div>
 </Base>
-
-<style>
-  .retrato {
-    float: right;
-    width: 180px;
-    height: 180px;
-    border-radius: 10px;
-    border: 1px solid var(--borde);
-    margin: 0 0 1rem 1.5rem;
-  }
-
-  @media (max-width: 640px) {
-    .retrato {
-      width: 140px;
-      height: 140px;
-    }
-  }
-</style>
