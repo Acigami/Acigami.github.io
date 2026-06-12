@@ -7,7 +7,8 @@
   --texto-suave: #6f675c;
   --acento: #c2410c;
   --borde: #ddd5c7;
-  --ancho-contenido: 44rem;
+  --ancho-contenido: 66rem;
+  --ancho-lectura: 44rem;
   --sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --serif: 'Source Serif 4 Variable', Georgia, serif;
 }
@@ -63,6 +64,16 @@ main {
   max-width: var(--ancho-contenido);
   margin: 0 auto;
   padding: 2.5rem 1.25rem 4rem;
+  display: flex;
+  gap: 3rem;
+  align-items: flex-start;
+}
+
+@media (max-width: 720px) {
+  main {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
 }
 
 h1,
@@ -184,6 +195,16 @@ blockquote {
   border-top: 1px solid var(--borde);
   padding-top: 1rem;
   margin: 2.5rem 0 0.9rem;
+}
+
+.titulo-seccion.primero {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 0.4rem;
+}
+
+.prosa {
+  max-width: var(--ancho-lectura);
 }
 
 /* Íconos del botón de tema: se muestra el del modo al que se va a cambiar.
