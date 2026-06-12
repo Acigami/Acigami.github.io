@@ -1,0 +1,136 @@
+---
+import { Image } from 'astro:assets';
+import { ENLACES, NOMBRE } from '../consts';
+import retrato from '../assets/roman.jpg';
+
+interface Props {
+  variante?: 'completo' | 'compacto';
+}
+
+const { variante = 'compacto' } = Astro.props;
+const completo = variante === 'completo';
+---
+
+<aside class:list={['perfil', { compacto: !completo }]}>
+  <Image
+    src={retrato}
+    alt="Retrato de Román Fernández Arias"
+    width={completo ? 320 : 144}
+    height={completo ? 320 : 144}
+    class="retrato"
+    loading="eager"
+    fetchpriority={completo ? 'high' : 'auto'}
+  />
+  {
+    completo ? (
+      <h1>{NOMBRE}</h1>
+    ) : (
+      <p class="nombre">{NOMBRE}</p>
+    )
+  }
+  {
+    completo && (
+      <p class="bajada">
+        Vengo de la antropología y me dedico a los datos: doy clases de aprendizaje automático
+        en la UNSAM y en GeoDojo, y estoy terminando la tesina de la licenciatura.
+      </p>
+    )
+  }
+  <ul class="hub">
+    {ENLACES.map((enlace) => (
+      <li>
+        <a href={enlace.href}>{enlace.texto}</a>
+      </li>
+    ))}
+  </ul>
+  {
+    completo && (
+      <p class="mas">
+        <a href="/sobre-mi/">Más sobre mí</a>
+      </p>
+    )
+  }
+</aside>
+
+<style>
+  .perfil {
+    flex: 0 0 15rem;
+    position: sticky;
+    top: 2rem;
+  }
+
+  .retrato {
+    width: 160px;
+    height: 160px;
+    border-radius: 10px;
+    border: 1px solid var(--borde);
+  }
+
+  .compacto .retrato {
+    width: 72px;
+    height: 72px;
+  }
+
+  h1 {
+    font-size: 1.9rem;
+    margin: 1rem 0 0.5rem;
+  }
+
+  .nombre {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    margin: 0.75rem 0 0;
+  }
+
+  .bajada {
+    font-size: 1rem;
+    color: var(--texto-suave);
+    margin: 0;
+  }
+
+  .hub {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    margin: 0.75rem 0 0;
+    padding: 0;
+  }
+
+  .hub a {
+    display: inline-block;
+    border: 1px solid var(--borde);
+    border-radius: 999px;
+    padding: 0.25rem 0.9rem;
+    font-size: 0.9rem;
+    color: var(--texto);
+    text-decoration: none;
+    background: var(--fondo-chip);
+  }
+
+  .hub a:hover {
+    border-color: var(--acento);
+    color: var(--acento);
+  }
+
+  .mas {
+    margin: 0.9rem 0 0;
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 720px) {
+    .perfil {
+      position: static;
+      flex: none;
+    }
+
+    .compacto {
+      display: none;
+    }
+
+    .retrato {
+      width: 96px;
+      height: 96px;
+    }
+  }
+</style>
