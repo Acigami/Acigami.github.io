@@ -1,0 +1,91 @@
+---
+import Base from '../../layouts/Base.astro';
+import MapaTopicosEU from '../../components/MapaTopicosEU';
+import { NOMBRE } from '../../consts';
+---
+
+<Base
+  titulo={`Mapa de tópicos: Parlamento Europeo · ${NOMBRE}`}
+  descripcion="Un mapa interactivo de discursos del Parlamento Europeo agrupados por tópico mediante LDA."
+>
+  <h1>Mapa de tópicos: Parlamento Europeo 2021</h1>
+  <p>
+    Cada punto es un discurso del subcorpus en español del Parlamento Europeo (2021). Un modelo
+    LDA de 12 tópicos agrupa los discursos por temática, y su posición en el mapa viene de
+    proyectar esa distribución de tópicos a dos dimensiones. Hacé click en un punto para leer un
+    fragmento, usá la rueda para zoom y arrastrá para moverte. La leyenda permite aislar tópicos.
+  </p>
+
+  <MapaTopicosEU client:load />
+
+  <h2>Cómo está hecho</h2>
+  <p>
+    Los datos vienen de un trabajo final de la facultad sobre discursos del Parlamento Europeo.
+    Un script de Python (<code>scripts/lda_mapa_topicos.py</code>) reentrena un LDA de 12 tópicos
+    sobre el corpus, calcula la distribución de tópicos de cada discurso y proyecta esos vectores
+    a 2D con PCA. El resultado se exporta como JSON estático
+    (<code>src/data/mapa-topicos-eu.json</code>) y esta página lo dibuja en un canvas, con la misma
+    técnica de isla de Preact que <a href="/sandbox/regresion-lineal/">la regresión lineal</a>. Las
+    etiquetas de los tópicos se generan automáticamente a partir de los términos más relevantes de
+    cada uno.
+  </p>
+</Base>
+
+<style is:global>
+  .mapa-topicos canvas {
+    display: block;
+    cursor: grab;
+    border: 1px solid var(--borde);
+    border-radius: 0.5rem;
+  }
+
+  .mapa-topicos .leyenda {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.75rem;
+  }
+
+  .mapa-topicos .leyenda button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font: inherit;
+    font-size: 0.8rem;
+    color: var(--texto);
+    background: var(--fondo-suave);
+    border: 1px solid var(--borde);
+    border-radius: 999px;
+    padding: 0.25rem 0.7rem;
+    cursor: pointer;
+  }
+
+  .mapa-topicos .leyenda button:hover {
+    border-color: var(--acento);
+  }
+
+  .mapa-topicos .leyenda button.oculto {
+    opacity: 0.4;
+  }
+
+  .mapa-topicos .leyenda .punto {
+    display: inline-block;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+  }
+
+  .mapa-topicos .detalle {
+    margin-top: 0.75rem;
+    min-height: 4.5em;
+  }
+
+  .mapa-topicos .detalle .meta {
+    color: var(--texto-suave);
+    font-size: 0.9rem;
+  }
+
+  .mapa-topicos .detalle .snippet {
+    font-style: italic;
+  }
+</style>
