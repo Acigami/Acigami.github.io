@@ -1,0 +1,44 @@
+---
+titulo: Accesibilidad a la salud en Argentina
+descripcion: Índice de accesibilidad a la salud por radio censal y un modelo de sus determinantes, con mapas de todo el país y de tres áreas urbanas.
+fecha: 2025-01-01
+etiquetas: [machine learning, geodatos, salud pública]
+destacado: true
+---
+
+import MapaCoropletico from '../../../components/MapaCoropletico';
+import GraficoBarras from '../../../components/GraficoBarras';
+import GraficoDispersion from '../../../components/GraficoDispersion';
+import datosVariables from '../../../data/accesibilidad-salud/importancia-variables.json';
+import datosDensidad from '../../../data/accesibilidad-salud/dispersion-densidad.json';
+import datosServicios from '../../../data/accesibilidad-salud/dispersion-servicios.json';
+
+Con Guillermo Debiasi e Iñaki González armamos un índice que mide qué tan accesible es la salud pública en cada radio censal de Argentina, y un modelo que explica de qué depende esa accesibilidad. La pregunta de fondo es simple: ¿qué tan lejos está la gente de un centro de salud u hospital, y por qué varía tanto según la zona?
+
+## El índice
+
+Para cada radio censal tomamos el tiempo caminando hasta el centro de salud y hasta el hospital más cercanos, promediamos esos dos valores, y aplicamos un logaritmo e invertimos la escala para que valores altos signifiquen mejor acceso. Con eso armamos un mapa de todo el país.
+
+<MapaCoropletico client:load src="/data/accesibilidad-salud/mapa-nacional.geojson" titulo="Índice de accesibilidad a la salud en Argentina" alto={680} />
+
+Se nota la diferencia entre zonas urbanas y rurales, pero el patrón se vuelve más interesante al hacer zoom en una ciudad: la accesibilidad varía barrio a barrio.
+
+<MapaCoropletico client:load src="/data/accesibilidad-salud/mapa-caba.geojson" titulo="CABA" alto={440} />
+<MapaCoropletico client:load src="/data/accesibilidad-salud/mapa-cordoba.geojson" titulo="Gran Córdoba" alto={440} />
+<MapaCoropletico client:load src="/data/accesibilidad-salud/mapa-posadas.geojson" titulo="Posadas" alto={440} />
+
+## Qué explica la accesibilidad
+
+Para identificar qué condiciona ese índice entrenamos un modelo de random forest, usando como predictores la cantidad de establecimientos productivos del radio (un proxy de empleo formal), la provincia, el acceso a servicios básicos (agua de red, cloacas, gas de red) y las condiciones de la vivienda según el Censo 2010, y la densidad poblacional. El modelo predice el índice con bastante precisión (RMSE de {datosVariables.rmse}), lo que sugiere que estas variables explican buena parte de la accesibilidad.
+
+<GraficoBarras client:load datos={datosVariables.variables} rmse={datosVariables.rmse} />
+
+La densidad poblacional es, por lejos, la variable más importante, seguida por el acceso a servicios básicos.
+
+<GraficoDispersion client:load datos={datosDensidad} etiquetaX="Densidad poblacional (hab./km²)" etiquetaY="Accesibilidad" />
+
+<GraficoDispersion client:load datos={datosServicios} etiquetaX="Servicios básicos (% de hogares con acceso)" etiquetaY="Accesibilidad" />
+
+## Conclusión
+
+Las dos relaciones son positivas pero de forma distinta. La de servicios básicos es bastante lineal: a más servicios, mejor acceso. La de densidad poblacional sube fuerte al principio y después se aplana: a partir de unas 5000 personas por km² la accesibilidad deja de mejorar, y de hecho los radios con mejor acceso están entre las 2500 y 7500 personas por km². Esa diferencia entre las dos curvas habla de desigualdades que no son solo de urbanización: un barrio popular puede estar muy densamente poblado y tener mal acceso a servicios, mientras que un barrio residencial de densidad media con buenos servicios tiene muy buen acceso a la salud.

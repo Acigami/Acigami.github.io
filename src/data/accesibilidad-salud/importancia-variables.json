@@ -1,0 +1,25 @@
+{
+  "rmse": 0.0776,
+  "variables": [
+    {
+      "variable": "Densidad poblacional",
+      "importancia": 0.5478
+    },
+    {
+      "variable": "Servicios básicos",
+      "importancia": 0.267
+    },
+    {
+      "variable": "Establecimientos productivos",
+      "importancia": 0.0778
+    },
+    {
+      "variable": "Condición de los hogares",
+      "importancia": 0.072
+    },
+    {
+      "variable": "Provincia",
+      "importancia": 0.0354
+    }
+  ]
+}

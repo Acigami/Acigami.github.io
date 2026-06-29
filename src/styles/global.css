@@ -9,6 +9,7 @@
   --borde: #ddd5c7;
   --ancho-contenido: 66rem;
   --ancho-lectura: 44rem;
+  --mapa-min: #fde8d8;
   --sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --serif: 'Source Serif 4 Variable', Georgia, serif;
 }
@@ -24,6 +25,7 @@
     --texto-suave: #9a9183;
     --acento: #f47b50;
     --borde: #3a332a;
+    --mapa-min: #3d1a0e;
   }
 }
 
@@ -36,6 +38,7 @@
   --texto-suave: #9a9183;
   --acento: #f47b50;
   --borde: #3a332a;
+  --mapa-min: #3d1a0e;
   color-scheme: dark;
 }
 
@@ -205,6 +208,39 @@ blockquote {
 
 .prosa {
   max-width: var(--ancho-lectura);
+}
+
+.prosa img {
+  max-width: 100%;
+  border-radius: 0.25rem;
+  display: block;
+}
+
+.prosa figure {
+  margin: 1.5rem 0;
+}
+
+.prosa figcaption {
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+  margin-top: 0.5rem;
+}
+
+.mapa-cargando {
+  background: var(--fondo-suave);
+  border-radius: 0.25rem;
+}
+
+.mapas-en-fila {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 560px) {
+  .mapas-en-fila {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Íconos del botón de tema: se muestra el del modo al que se va a cambiar.

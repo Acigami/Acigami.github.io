@@ -1,9 +1,9 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import preact from '@astrojs/preact';
+import mdx from '@astrojs/mdx';
 
 export default defineConfig({
-  // Preact renderiza las islas interactivas (componentes .tsx).
-  integrations: [preact()],
+  integrations: [preact(), mdx()],
   site: 'https://acigami.github.io',
 });
