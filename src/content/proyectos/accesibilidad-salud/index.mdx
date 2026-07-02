@@ -13,7 +13,7 @@ import datosVariables from '../../../data/accesibilidad-salud/importancia-variab
 import datosDensidad from '../../../data/accesibilidad-salud/dispersion-densidad.json';
 import datosServicios from '../../../data/accesibilidad-salud/dispersion-servicios.json';
 
-Con Guillermo Debiasi e Iñaki González armamos un índice que mide qué tan accesible es la salud pública en cada radio censal de Argentina, y un modelo que explica de qué depende esa accesibilidad. La pregunta de fondo es simple: ¿qué tan lejos está la gente de un centro de salud u hospital, y por qué varía tanto según la zona?
+Con Guillermo Debiasi e Iñaki González armamos un índice que mide qué tan accesible es la salud pública en cada radio censal de Argentina, y un modelo que explica de qué depende esa accesibilidad. La pregunta de fondo: ¿qué tan lejos está la gente de un centro de salud u hospital, y por qué varía tanto según la zona?
 
 ## El índice
 
@@ -31,7 +31,7 @@ Se nota la diferencia entre zonas urbanas y rurales, pero el patrón se vuelve m
 
 Para identificar qué condiciona ese índice entrenamos un modelo de random forest, usando como predictores la cantidad de establecimientos productivos del radio (un proxy de empleo formal), la provincia, el acceso a servicios básicos (agua de red, cloacas, gas de red) y las condiciones de la vivienda según el Censo 2010, y la densidad poblacional. El modelo predice el índice con bastante precisión (RMSE de {datosVariables.rmse}), lo que sugiere que estas variables explican buena parte de la accesibilidad.
 
-<GraficoBarras client:load datos={datosVariables.variables} rmse={datosVariables.rmse} />
+<GraficoBarras client:load datos={datosVariables.variables} />
 
 La densidad poblacional es, por lejos, la variable más importante, seguida por el acceso a servicios básicos.
 

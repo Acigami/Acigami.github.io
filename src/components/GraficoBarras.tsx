@@ -4,7 +4,6 @@ type Variable = { variable: string; importancia: number };
 
 interface Props {
   datos: Variable[];
-  rmse: number;
 }
 
 const ANCHO = 520;
@@ -12,7 +11,7 @@ const MARGEN = { izq: 196, der: 60, arr: 16, aba: 16 };
 const ALTO_BARRA = 26;
 const ESPACIO = 12;
 
-export default function GraficoBarras({ datos, rmse }: Props) {
+export default function GraficoBarras({ datos }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [versionTema, setVersionTema] = useState(0);
 
