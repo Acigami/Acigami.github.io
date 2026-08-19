@@ -1,0 +1,54 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { NOMBRE } from '../../consts';
+
+const ediciones = (await getCollection('boletin')).sort(
+  (a, b) => b.data.fecha.valueOf() - a.data.fecha.valueOf()
+);
+
+const formatoCorto = (fecha: Date) =>
+  fecha.toLocaleDateString('es-AR', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC',
+  });
+---
+
+<Base
+  titulo={`Boletín Oficial · ${NOMBRE}`}
+  descripcion="Resumen del Boletín Oficial argentino, filtrado por temas y armado automáticamente."
+>
+  <h1>Boletín Oficial</h1>
+  <p class="intro">
+    Todos los días se publican más de cien avisos en el Boletín Oficial y casi ninguno llega a
+    ningún lado. Acá dejo un resumen filtrado por los temas que sigo: economía y trabajo, ciencia
+    y universidad, y las contrataciones del Estado. Lo arma un scraper propio y los enlaces van
+    siempre al texto oficial.
+  </p>
+
+  {
+    ediciones.length === 0 ? (
+      <p>Todavía no hay ediciones publicadas.</p>
+    ) : (
+      <div class="lista-filas">
+        {ediciones.map((edicion) => (
+          <article class="fila">
+            <h3>
+              <a href={`/boletin/${edicion.id}/`}>{formatoCorto(edicion.data.fecha)}</a>
+            </h3>
+            <p class="meta">{edicion.data.etiquetas.join(', ')}</p>
+            <p>{edicion.data.descripcion}</p>
+          </article>
+        ))}
+      </div>
+    )
+  }
+</Base>
+
+<style>
+  .intro {
+    max-width: var(--ancho-lectura);
+  }
+</style>

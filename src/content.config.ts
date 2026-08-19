@@ -16,4 +16,20 @@ const proyectos = defineCollection({
   }),
 });
 
-export const collections = { proyectos };
+// Cada entrada es una edición (o un tramo) del Boletín Oficial, generada por el
+// scraper de `escraper_boletin_oficial`: no se escriben a mano.
+const boletin = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/boletin' }),
+  schema: z.object({
+    titulo: z.string(),
+    descripcion: z.string(),
+    fecha: z.coerce.date(),
+    desde: z.coerce.date(),
+    hasta: z.coerce.date(),
+    etiquetas: z.array(z.string()).default([]),
+    cantidad: z.number().default(0),
+    publicados: z.number().default(0),
+  }),
+});
+
+export const collections = { proyectos, boletin };

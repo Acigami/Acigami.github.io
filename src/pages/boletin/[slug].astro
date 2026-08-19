@@ -1,0 +1,70 @@
+---
+import type { InferGetStaticPropsType } from 'astro';
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { NOMBRE } from '../../consts';
+
+export async function getStaticPaths() {
+  const ediciones = await getCollection('boletin');
+  return ediciones.map((edicion) => ({
+    params: { slug: edicion.id },
+    props: { edicion },
+  }));
+}
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { edicion } = Astro.props;
+const { titulo, descripcion, etiquetas } = edicion.data;
+const { Content } = await render(edicion);
+---
+
+<Base titulo={`${titulo} · ${NOMBRE}`} descripcion={descripcion}>
+  <article class="prosa boletin">
+    <h1>{titulo}</h1>
+    <p class="meta">{etiquetas.join(', ')}</p>
+    <p class="copete">{descripcion}</p>
+    <Content />
+  </article>
+
+  <p class="volver"><a href="/boletin/">Todas las ediciones</a></p>
+</Base>
+
+<style>
+  /* El informe es largo y muy denso en enlaces: conviene apretarlo un poco
+     más que la prosa normal del sitio. */
+  .boletin :global(h2) {
+    margin-top: 2.75rem;
+    padding-bottom: 0.35rem;
+    border-bottom: 1px solid var(--borde);
+  }
+
+  .boletin :global(h3) {
+    margin-top: 1.75rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--texto-suave);
+    font-weight: 600;
+  }
+
+  .boletin :global(p) {
+    margin: 0.4rem 0;
+  }
+
+  .boletin :global(ul) {
+    padding-left: 1.1rem;
+  }
+
+  .boletin :global(li) {
+    margin-bottom: 0.6rem;
+  }
+
+  .copete {
+    color: var(--texto-suave);
+  }
+
+  .volver {
+    margin-top: 2.5rem;
+  }
+</style>
